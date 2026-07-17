@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Mohammed Shalaby's MSc Robotics research log: ROS 2 architecture and systems integration for Trolley-X.">
+  <title>Trolley-X | Mohammed Shalaby</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#top"><span class="brand-mark">TX</span><span>Trolley-X Research</span></a>
+    <nav aria-label="Main navigation">
+      <a href="#research">Research</a><a href="#work">My contribution</a><a href="#log">Research log</a><a href="#papers">Papers</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">MSc Robotics · Individual Dissertation Blog</p>
+        <h1>Building the software backbone of an autonomous follow-cart.</h1>
+        <p class="lede">I’m Mohammed Shalaby, the ROS 2 architecture and systems-integration lead for Trolley-X. My work examines how a modular ROS 2 Jazzy architecture can connect sensing, decision-making and embedded motor control reliably on a low-cost physical platform.</p>
+        <div class="hero-actions"><a class="button primary" href="#research">Explore the research</a><a class="button secondary" href="#log">View current progress</a></div>
+      </div>
+      <aside class="status-card" aria-label="Current research status">
+        <span class="live"><i></i> Research in progress</span>
+        <h2>Current phase</h2>
+        <p>Architecture definition, literature review, component procurement and integration planning.</p>
+        <dl><div><dt>Platform</dt><dd>ROS 2 Jazzy</dd></div><div><dt>Interface</dt><dd>ROS 2 ↔ Arduino</dd></div><div><dt>Module</dt><dd>PDE4445</dd></div></dl>
+      </aside>
+    </section>
+
+    <section class="section" id="research">
+      <p class="eyebrow">Research focus</p>
+      <h2>From working prototype to defensible research</h2>
+      <div class="question"><span>Primary research question</span><p>How can a modular ROS 2 Jazzy architecture improve the reliability, responsiveness and maintainability of a low-cost autonomous follow-cart when integrating high-level navigation with embedded motor control?</p></div>
+      <div class="grid three">
+        <article class="card"><span class="number">01</span><h3>Communication reliability</h3><p>Measure command latency, jitter, message loss and recovery across the ROS 2–microcontroller boundary under realistic operating loads.</p></article>
+        <article class="card"><span class="number">02</span><h3>Safe system behaviour</h3><p>Design and test a state machine that makes transitions between idle, following, obstacle stop, fault and recovery explicit and repeatable.</p></article>
+        <article class="card"><span class="number">03</span><h3>Reproducible integration</h3><p>Evaluate whether clear interfaces, lifecycle management and structured logging reduce integration faults and improve test repeatability.</p></article>
+      </div>
+      <p class="note"><strong>Scope note:</strong> These are the questions and metrics guiding the study. Results will be reported only after experiments are completed.</p>
+    </section>
+
+    <section class="section dark" id="work">
+      <p class="eyebrow">My individual contribution</p>
+      <h2>The layer that makes every subsystem work together</h2>
+      <div class="architecture" role="img" aria-label="System architecture from sensors through ROS 2 to Arduino and motors">
+        <div><small>Inputs</small><strong>UWB + LiDAR</strong></div><b>→</b><div><small>ROS 2 Jazzy</small><strong>Fusion &amp; safety</strong></div><b>→</b><div><small>State logic</small><strong>Command arbitration</strong></div><b>→</b><div><small>Embedded</small><strong>Arduino + motors</strong></div>
+      </div>
+      <div class="grid two contribution-list">
+        <article><h3>ROS 2 Jazzy port</h3><p>Own the migration of the project software to the physical ROS 2 Jazzy stack, including packages, launch structure, parameters and interface contracts.</p></article>
+        <article><h3>Motor-control interface</h3><p>Develop the bidirectional Arduino interface for velocity commands, feedback, watchdog behaviour and safe handling of lost communication.</p></article>
+        <article><h3>System state machine</h3><p>Define deterministic operating states and guarded transitions so faults, emergency stops and recovery can be tested systematically.</p></article>
+        <article><h3>Software integration</h3><p>Integrate team subsystems through documented topics, services, coordinate frames and data contracts, with version-controlled releases.</p></article>
+        <article><h3>Return-to-home study</h3><p>Investigate an optional Nav2-based recovery path that can return the cart to a known location when following ends or a task is cancelled.</p></article>
+        <article><h3>Verification &amp; evidence</h3><p>Create repeatable scenarios, logs and quantitative comparisons that connect architectural decisions to observable system performance.</p></article>
+      </div>
+    </section>
+
+    <section class="section" id="log">
+      <p class="eyebrow">Research &amp; engineering log</p><h2>Work in progress</h2>
+      <div class="timeline">
+        <article><time>July 2026</time><div><span class="tag active">In progress</span><h3>Literature review and research design</h3><p>Reviewing ROS 2 execution, microcontroller integration, lifecycle management, Nav2 and real-time performance literature. Converting the findings into testable hypotheses and measurable acceptance criteria.</p></div></article>
+        <article><time>July 2026</time><div><span class="tag active">In progress</span><h3>Parts, compatibility and logistics</h3><p>Preparing the bill of materials, checking electrical and software compatibility, comparing suppliers, reviewing UAE delivery lead times and identifying substitutes for integration-critical parts.</p></div></article>
+        <article><time>Next</time><div><span class="tag">Planned</span><h3>Interface prototype</h3><p>Establish a bench-tested ROS 2–Arduino link, define the command/feedback message contract and test timeout and watchdog behaviour before connecting the full drivetrain.</p></div></article>
+        <article><time>Next</time><div><span class="tag">Planned</span><h3>Integrated experiments</h3><p>Run repeatable trials for latency, emergency-stop response, communication loss, state transitions and return-to-home success. Analyse logs using clearly defined metrics.</p></div></article>
+      </div>
+    </section>
+
+    <section class="section papers" id="papers">
+      <p class="eyebrow">Selected reading</p><h2>Papers informing the design</h2>
+      <div class="paper-list">
+        <a href="https://arxiv.org/abs/2601.10722" target="_blank" rel="noreferrer"><span>ROS 2 timing &amp; executors · 2025</span><strong>A Survey of Real-Time Support, Analysis, and Advancements in ROS 2</strong><p>Frames latency, response time, reaction time and data age as useful evaluation measures.</p></a>
+        <a href="https://doi.org/10.3390/electronics13091658" target="_blank" rel="noreferrer"><span>micro-ROS · 2024</span><strong>Improving Real-Time Performance of Micro-ROS with a Real-Time Callback Executor</strong><p>Motivates measuring scheduling and communication behaviour at the embedded boundary.</p></a>
+        <a href="https://arxiv.org/abs/2310.10289" target="_blank" rel="noreferrer"><span>UWB–LiDAR fusion · 2023</span><strong>Moving Object Localization Based on the Fusion of UWB and LiDAR with a Mobile Robot</strong><p>Shows how identity-based UWB ranging and LiDAR geometry can complement one another.</p></a>
+        <a href="https://arxiv.org/abs/1811.02854" target="_blank" rel="noreferrer"><span>Cooperative localization · 2018</span><strong>UWB/LiDAR Fusion for Cooperative Range-Only SLAM</strong><p>Provides evidence that combining both sensing modes can reduce weaknesses present in either alone.</p></a>
+        <a href="https://roscon.ros.org/2019/talks/roscon2019_navigation2_overview_final.pdf" target="_blank" rel="noreferrer"><span>Navigation2 architecture · 2019</span><strong>Navigation2 Overview</strong><p>Introduces lifecycle nodes and behaviour trees as foundations for configurable, reliable navigation.</p></a>
+      </div>
+    </section>
+
+    <section class="section outcomes"><p class="eyebrow">Planned evidence</p><h2>What success will be measured against</h2><div class="metrics"><div><strong>Latency</strong><span>Command-to-actuation delay</span></div><div><strong>Jitter</strong><span>Timing consistency</span></div><div><strong>Safety</strong><span>Stop response &amp; fault recovery</span></div><div><strong>Reliability</strong><span>Successful trial completion</span></div></div></section>
+  </main>
+  <footer><p><strong>Mohammed Shalaby</strong><br>MSc Robotics · Middlesex University Dubai</p><p>Trolley-X individual research blog<br>Last updated July 2026</p></footer>
+</body>
+</html>
