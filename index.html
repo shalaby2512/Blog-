@@ -13,7 +13,7 @@
 <body>
   <header class="site-header">
     <a class="brand" href="#top"><span class="brand-mark">TX</span><span>Dissertation Blog</span></a>
-    <nav aria-label="Main navigation"><a href="#research">Research</a><a href="#work">My contribution</a><a href="#prototype">Prototype</a><a href="#log">Research log</a><a href="#papers">Papers</a></nav>
+    <nav aria-label="Main navigation"><a href="#research">Research</a><a href="#work">My contribution</a><a href="#prototype">Prototype</a><a href="#log">Research log</a><a href="#payload">Load test</a><a href="#papers">Papers</a></nav>
   </header>
 
   <main id="top">
@@ -21,13 +21,13 @@
       <div class="hero-copy">
         <p class="eyebrow">MSc Robotics · Individual Dissertation Blog</p>
         <h1>Building the software backbone of an autonomous follow-cart.</h1>
-        <p class="lede">I’m Mohammed Shalaby, the ROS 2 architecture and systems-integration lead for Trolley-X. My research examines how a modular ROS 2 Jazzy architecture can connect sensing, decision-making and embedded motor control reliably on a low-cost physical platform.</p>
+        <p class="lede">I’m Mohammed Shalaby. My dissertation contribution was deploying and integrating the ROS 2 Jazzy stack on the physical Trolley-X cart, diagnosing power and UWB startup faults, and verifying the interfaces from sensing through safety arbitration to Arduino motor control.</p>
         <div class="hero-actions"><a class="button primary" href="#prototype">See the physical prototype</a><a class="button secondary" href="#log">View current progress</a></div>
       </div>
       <aside class="status-card" aria-label="Current research status">
-        <span class="live"><i></i> Six physical follow trials recorded</span>
+        <span class="live"><i></i> Physical integration and follow trials analysed</span>
         <h2>Current phase</h2>
-        <p>ROS 2 Jazzy, UWB, LiDAR, safety arbitration and Arduino control integrated on the physical cart. Six post-fix follow trials have been analysed.</p>
+        <p>ROS 2 Jazzy, UWB, LiDAR, safety arbitration and Arduino control integrated on the physical cart. Six post-fix follow trials and a separate exploratory 4 kg payload comparison have been analysed.</p>
         <dl><div><dt>Platform</dt><dd>ROS 2 Jazzy</dd></div><div><dt>Embedded tests</dt><dd>Arduino Uno</dd></div><div><dt>Drive</dt><dd>4-wheel skid steer</dd></div></dl>
       </aside>
     </section>
@@ -38,13 +38,13 @@
       <div class="grid three">
         <article class="card"><span class="number">01</span><h3>Physical deployment</h3><p>Deployed ROS 2 Jazzy on the Raspberry Pi 5 and verified the LiDAR, UWB, odometry, IMU, safety and Arduino interfaces as one system.</p></article>
         <article class="card"><span class="number">02</span><h3>Failure containment</h3><p>All motion requests pass through the LiDAR safety supervisor. Stale scans, lost targets and expired requests produce a stop in the tested prototype.</p></article>
-        <article class="card"><span class="number">03</span><h3>Measured follow trials</h3><p>Six post-fix runs totalled 297 seconds. Hold error was measured against the approximately 1.0 m following distance and varied across runs.</p></article>
+        <article class="card"><span class="number">03</span><h3>Measured follow trials</h3><p>Six post-fix runs totalled 297 seconds. Hold error was target range minus 1.02 m while commanded linear speed was zero; the six runs varied in accuracy.</p></article>
       </div>
-      <p class="note"><strong>Evidence boundary:</strong> Results come from six short runs in a small university laboratory. The blog reports prototype behaviour, not certified collision avoidance or long-duration reliability.</p>
+      <p class="note"><strong>Evidence boundary:</strong> The main series contains six short runs in a small university laboratory. The payload comparison is a separate pair with only one short loaded run. Neither supports a statistical payload effect, certified collision avoidance or long-duration reliability.</p>
     </section>
 
     <section class="section dark" id="work">
-      <p class="eyebrow">My individual contribution</p><h2>The layer that makes every subsystem work together</h2>
+      <p class="eyebrow">My individual contribution</p><h2>Deploying and verifying the shared stack</h2>
       <div class="architecture" role="img" aria-label="System architecture from sensors through ROS 2 to Arduino and motors"><div><small>Inputs</small><strong>UWB + LiDAR</strong></div><b>→</b><div><small>ROS 2 Jazzy</small><strong>Fusion &amp; safety</strong></div><b>→</b><div><small>State logic</small><strong>Command arbitration</strong></div><b>→</b><div><small>Embedded</small><strong>Arduino + motors</strong></div></div>
       <div class="grid two contribution-list">
         <article><h3>ROS 2 Jazzy deployment</h3><p>Deployed the modular stack on the Raspberry Pi 5 and verified its sensor, safety, telemetry and motor boundaries in the physical build.</p></article>
@@ -52,7 +52,7 @@
         <article><h3>Safety and recovery verification</h3><p>Verified the shared BOOT, READY, FOLLOW, SLOW, STOP and RECOVER behaviour on hardware, including stale-scan STOP and target reacquisition hold.</p></article>
         <article><h3>Software integration</h3><p>Connected the team’s ranging, estimation, follow control, safety supervisor and serial bridge through explicit ROS 2 topics and a single launch flow.</p></article>
         <article><h3>Fault diagnosis</h3><p>Led diagnosis of Pi undervoltage and UWB reset failures through load-side measurements and startup tests; the L298N turning fault was diagnosed jointly by the team.</p></article>
-        <article><h3>Evidence and authorship</h3><p>Maintained deployment evidence and supported end-to-end validation. Ashwin developed the EKF, follow controller, safety node and v3 firmware interface; Vignesh developed the chassis.</p></article>
+        <article><h3>Evidence and authorship</h3><p>Maintained deployment evidence and supported end-to-end validation. Ashwin designed and implemented the EKF and gates, follow controller, safety node, no-reverse base rule and v3 firmware command interface; I integrated those components on hardware. Vignesh designed and fabricated the chassis.</p></article>
       </div>
     </section>
 
@@ -88,10 +88,36 @@
         <article><time>September 2026</time><div><span class="tag complete">Completed</span><h3>ROS 2–Arduino integration</h3><p>Deployed ROS 2 Jazzy on the Raspberry Pi 5, connected Arduino commands and telemetry, and verified odometry, IMU, UWB and LiDAR topic boundaries. All autonomous and manual motion requests pass through the safety supervisor.</p></div></article>
         <article><time>September 2026</time><div><span class="tag complete">Completed</span><h3>Power and UWB startup faults resolved</h3><p>The Pi supply fell from 5.05 V idle to 4.61 V under full load. A separate USB-C supply held 4.90–4.99 V. A roughly 150 ms NRST boot pulse removed the UWB modules’ manual-reset dependency.</p></div></article>
         <article><time>September 2026</time><div><span class="tag complete">Completed</span><h3>Loaded turning and spin-lock corrected</h3><p>The L298N delivered only about 2.2 V at the motors during a 63% duty spin. The team changed to BTS7960 bridges and reduced tyre scrub. Blended differential drive, validity gates and a 0.7 s reacquisition hold addressed the early spin-lock.</p></div></article>
-        <article><time>17–21 September 2026</time><div><span class="tag complete">Completed</span><h3>Six integrated follow trials analysed</h3><p>Six post-fix runs totalled 297 s. Mean hold MAE was 16.7 ± 7.0 cm across runs, with a range of 8.7–25.8 cm. The 8.7 cm MAE / 11.0 cm RMSE result was the 32 s run. Matched-log filtering reduced bearing jitter by 75–87%.</p></div></article>
-        <article><time>Next</time><div><span class="tag active">Open</span><h3>Quantified safety and endurance</h3><p>Measure end-to-end sensor-to-deceleration latency, speed-dependent stopping distance, nuisance stops, target loss and longer runs across obstacle types, trajectories, payloads and compute loads. Return-to-home remains optional and unimplemented.</p></div></article>
+        <article><time>17–21 September 2026</time><div><span class="tag complete">Completed</span><h3>Six integrated follow trials analysed</h3><p>Six post-fix runs totalled 297 s. Mean hold MAE was 16.7 ± 7.0 cm across runs, with a range of 8.7–25.8 cm. The 8.7 cm MAE / 11.0 cm RMSE result was the 32 s run. Matched-log filtering reduced bearing jitter by 75–87%. Hold error uses target range minus 1.02 m only while commanded linear speed is zero.</p></div></article>
+        <article><time>September 2026</time><div><span class="tag complete">Completed</span><h3>Exploratory 4 kg comparison</h3><p>Recorded a separate no-payload/loaded pair. Mean encoder speed during driving fell from 0.202 to 0.153 m/s, while mean commanded speed changed from 0.256 to 0.233 m/s. Details and limits appear below.</p></div></article>
+        <article><time>Next</time><div><span class="tag active">Open</span><h3>Quantified safety and endurance</h3><p>Measure end-to-end sensor-to-deceleration latency, speed-dependent stopping distance, nuisance stops and longer runs across obstacle types, trajectories, measured cart mass, repeated payloads and compute loads. Return-to-home remains optional and unimplemented.</p></div></article>
       </div>
       <div class="engineering-note"><strong>What the measurements mean</strong><p>Static two-anchor ranging reached 3.3 cm RMSE over 0.75–3.0 m, but that is sensor accuracy, not whole-cart following accuracy. The six runs were short and used a small laboratory area; obstacle state transitions were observed, while a controlled stopping-distance matrix was not completed. The original open-loop versus proportional straight-line drift comparison was not reported as a controlled final result.</p></div>
+    </section>
+
+    <section class="section payload" id="payload">
+      <p class="eyebrow">September 2026 · Exploratory load test</p><h2>What changed with a 4 kg payload?</h2>
+      <p class="section-intro">A separate no-payload run was compared with one 4 kg run. Both used the same hold-error method as the six-run series: target range minus 1.02 m, sampled only when commanded linear speed was zero. The logged <code>dist_hold_err_m</code> column was not used. Mean achieved speed came from encoder odometry during driving.</p>
+      <div class="payload-table-wrap">
+        <table class="payload-table">
+          <caption>No payload and 4 kg comparison. This pair is not included in the six-run aggregate.</caption>
+          <thead><tr><th scope="col">Metric</th><th scope="col">No payload</th><th scope="col">4 kg</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Length / time driving</th><td>63 s / 19%</td><td>28 s / 46%</td></tr>
+            <tr><th scope="row">Hold MAE / RMSE</th><td>14.2 / 19.4 cm</td><td>19.1 / 38.1 cm</td></tr>
+            <tr><th scope="row">Hold bias</th><td>−11.2 cm</td><td>+14.3 cm</td></tr>
+            <tr><th scope="row">Whole-run MAE</th><td>30.7 cm</td><td>33.2 cm</td></tr>
+            <tr><th scope="row">NIS mean / below 3.84</th><td>0.87 / 96%</td><td>1.52 / 90%</td></tr>
+            <tr><th scope="row">Bearing jitter cut, raw to EKF</th><td>82%</td><td>71%</td></tr>
+            <tr><th scope="row">Mean commanded speed</th><td>0.256 m/s</td><td>0.233 m/s</td></tr>
+            <tr><th scope="row">Mean encoder-odometry speed</th><td>0.202 m/s</td><td>0.153 m/s</td></tr>
+            <tr><th scope="row">Achieved / commanded</th><td>0.79</td><td>0.66</td></tr>
+            <tr><th scope="row">Peak speed</th><td>0.29 m/s</td><td>0.25 m/s</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="engineering-note"><strong>Reading the result</strong><p>The loaded cart’s mean achieved driving speed was about 24% lower, although the mean commands were similar rather than identical. Hold bias shifted from −11.2 to +14.3 cm, consistent with lag behind the operator. NIS and jitter summaries show no clear estimator failure in this pair, so the drive response is the likely bottleneck observed here. This is an indication from one loaded run, not a statistical or isolated causal result: that run was 28 s long with about 12.8 s of driving, and the cart mass was not measured.</p></div>
+      <p class="note"><strong>Safety observation:</strong> No safety events were recorded during the follow portions; minimum front distance was 0.71 m. During loading, a person close to the cart’s front caused LiDAR STOP as designed. This was not a controlled moving-obstacle stopping test.</p>
     </section>
 
     <section class="section papers" id="papers">
@@ -103,7 +129,7 @@
         <a href="https://roscon.ros.org/2019/talks/roscon2019_navigation2_overview_final.pdf" target="_blank" rel="noreferrer"><span>Navigation2 architecture · 2019</span><strong>Navigation2 Overview</strong><p>Introduces lifecycle nodes and behaviour trees as foundations for configurable, reliable navigation.</p></a>
       </div>
     </section>
-    <section class="section outcomes"><p class="eyebrow">Reported evidence</p><h2>Results and remaining limits</h2><div class="metrics"><div><strong>3.3 cm</strong><span>Static two-anchor range RMSE</span></div><div><strong>16.7 cm</strong><span>Mean hold MAE across six runs</span></div><div><strong>75–87%</strong><span>Matched-log bearing jitter reduction</span></div><div><strong>Open</strong><span>Physical latency and stopping-distance study</span></div></div></section>
+    <section class="section outcomes"><p class="eyebrow">Reported evidence</p><h2>Results and remaining limits</h2><div class="metrics"><div><strong>3.3 cm</strong><span>Static two-anchor range RMSE</span></div><div><strong>16.7 cm</strong><span>Mean hold MAE across six runs</span></div><div><strong>75–87%</strong><span>Matched-log bearing jitter reduction</span></div><div><strong>24%</strong><span>Lower achieved speed in one 4 kg run</span></div></div></section>
   </main>
   <footer><p><strong>Mohammed Shalaby</strong><br>MSc Robotics · Middlesex University Dubai</p><p>Trolley-X individual research blog<br>Last updated September 2026</p></footer>
 </body>
